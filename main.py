@@ -40,14 +40,18 @@ lab = Room("Laboratory","A bright room with sunlight shining through windows sec
 lab.shelf = Container("shelf",["brass key","spork","yellow flashlight"],"on")
 lab.create_room_item("rat")
 yellowFlashlight = Flashlight("yellow",1,True)
-
+#Library
+#
 library=Room("Library","It's a mysterious place very dark and very quiet. You see a DESK as well as a SHELF.")
 library.desk=Container("inside the desk.",["key","quarter"])
 library.shelf=Container("on the shelf.",["Sniper","can"])
-                                                
-
 library.create_room_item("rat")
 library.create_room_item("fork")
+# Water storage
+#
+Waterstorage = Room("Water storage","A dark and dirty room with Spiders all around. There are dirty cans, and jumper cables. Theres a CABINET and has important stuff on it ")
+Waterstorage.cabinet = Container("You Look at the cabinet. Theres a Phone and 1 Ammo",["Phone","1 Ammo"])
+
 
 # Supply Closet
 #
@@ -64,7 +68,7 @@ kitchen.link_room(locked, "WEST")
 supplycloset.link_room(smalloffice, "EAST")
 smalloffice.link_room(kitchen, "NORTH")
 smalloffice.link_room(lab, "EAST")
-smalloffice.link_room(locked, "SOUTH")
+smalloffice.link_room(Waterstorage, "SOUTH")
 smalloffice.link_room(supplycloset, "WEST")
 lab.link_room(locked, "SOUTH")
 lab.link_room(smalloffice, "WEST")
