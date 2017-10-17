@@ -2,6 +2,7 @@ from room import Room
 from flashlight import Flashlight
 from character import Enemy
 from container import Container
+from Sniper import sniper
 
 heldItems = []
 myHealth = 53
