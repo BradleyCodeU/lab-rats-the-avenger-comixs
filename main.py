@@ -41,6 +41,14 @@ lab.shelf = Container("shelf",["brass key","spork","yellow flashlight"],"on")
 lab.create_room_item("rat")
 yellowFlashlight = Flashlight("yellow",1,True)
 
+library=Room("Library","It's a mysterious place very dark and very quiet. You see a DESK as well as a SHELF.")
+library.desk=Container("inside the desk.",["key","quarter"])
+library.shelf=Container("on the shelf.",["Sniper","can"])
+                                                
+
+library.create_room_item("rat")
+library.create_room_item("fork")
+
 # Supply Closet
 #
 supplycloset = Room("Supply Closet","A small dark room with a musty smell. On one side is a filing CABINET and a large plastic BIN. On the other side is a SHELF with supplies and a SHOEBOX.")
@@ -50,7 +58,7 @@ supplycloset = Room("Supply Closet","A small dark room with a musty smell. On on
 locked = Room("locked","")
 
 # Connect rooms. These are one-way connections.
-kitchen.link_room(locked, "EAST")
+kitchen.link_room(library, "EAST")
 kitchen.link_room(smalloffice, "SOUTH")
 kitchen.link_room(locked, "WEST")
 supplycloset.link_room(smalloffice, "EAST")
@@ -151,6 +159,10 @@ def checkUserInput(current_room,command,heldItems):
     elif current_room.name == "Laboratory" and command == "SHELF":
         # Open lab.shelf and concat each of the contents to the end of room_items
         current_room.room_items += lab.shelf.open()
+    elif current_room.name == "Library" and command == "DESK":
+        current_room.room_items += library.desk.open()
+    elif current_room.name == "Library" and command == "SHELF":
+         current_room.room_items += library.shelf.open()
 
     # ********************************* MOVE *********************************
     else:
