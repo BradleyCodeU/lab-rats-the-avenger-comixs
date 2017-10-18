@@ -2,6 +2,7 @@ from room import Room
 from flashlight import Flashlight
 from character import Enemy
 from container import Container
+from sniper import Sniper
 
 heldItems = []
 myHealth = 53
@@ -48,15 +49,17 @@ yellowFlashlight = Flashlight("yellow",1,True)
 #Library
 #
 library=Room("Library","It's a mysterious place very dark and very quiet. You see a DESK as well as a SHELF.")
-library.desk=Container("inside the desk.",["key","quarter"])
-library.shelf=Container("on the shelf.",["Sniper","can"])
+library.desk=Container("inside the desk.",["phone battery","quarter"])
+library.shelf=Container("on the shelf.",["Sniper","can of soup"])
 library.create_room_item("rat")
 library.create_room_item("fork")
 # Water storage
 #
-Waterstorage = Room("Water storage","A dark and dirty room with Spiders all around. There are dirty cans, and jumper cables. Theres a CABINET and has important stuff on it ")
-Waterstorage.cabinet = Container("You Look at the cabinet. Theres a Phone and 1 Ammo",["Phone","1 Ammo"])
-
+Waterstorage = Room("Water storage","A dark and dirty room with Spiders all around. There are dirty CANS, and jumper cables. Theres a CABINET and has important stuff on it ")
+Waterstorage.cabinet = Container("You Look at the cabinet. There's a ",["1 AMMO","Warter Bottle"])
+Waterstorage.cans = Container("In the Can",["Phone","Energy drink"])
+Waterstorage.create_room_item("cans")
+Waterstorage.create_room_item("spork")
 
 # Supply Closet
 #
@@ -69,7 +72,15 @@ locked = Room("locked","")
 # Connect rooms. These are one-way connections.
 kitchen.link_room(library, "EAST")
 kitchen.link_room(smalloffice, "SOUTH")
+<<<<<<< HEAD
 kitchen.link_room(bathroom, "WEST")
+=======
+kitchen.link_room(locked, "WEST")
+library.link_room(kitchen, "WEST")
+library.link_room(locked, "EAST")
+library.link_room(locked, "NORTH")
+library.link_room(locked, "SOUTH")
+>>>>>>> 50a76a9467b7506a5369ec7026a725f742831a77
 supplycloset.link_room(smalloffice, "EAST")
 smalloffice.link_room(kitchen, "NORTH")
 smalloffice.link_room(lab, "EAST")
@@ -105,8 +116,12 @@ def playerItems():
         redFlashlight.get_interface(heldItems,current_room)
     if "yellow flashlight" in heldItems:
         yellowFlashlight.get_interface(heldItems,current_room)
+<<<<<<< HEAD
     if "1 ammo" in heldItems:
         1-ammo.get_interface(heldItems,current_room)
+=======
+  
+>>>>>>> 50a76a9467b7506a5369ec7026a725f742831a77
 
 # This fuction checks the player's command and then runs the corresponding method
 def checkUserInput(current_room,command,heldItems):
@@ -174,6 +189,7 @@ def checkUserInput(current_room,command,heldItems):
         current_room.room_items += library.desk.open()
     elif current_room.name == "Library" and command == "SHELF":
          current_room.room_items += library.shelf.open()
+<<<<<<< HEAD
     elif current_room.name == "bathroom" and command == "SHELF":
         # Open kitchen.cupboard and concat each of the contents to the end of room_items
         current_room.room_items += bathroom.shelf.open()
@@ -181,6 +197,12 @@ def checkUserInput(current_room,command,heldItems):
         # Open kitchen.cupboard and concat each of the contents to the end of room_items
         current_room.room_items += bathroom.cabinet.open()
 
+=======
+    elif current_room.name == "Waterstorage" and command == "CABINET":
+         current_room.room_items += Waterstorage.cabinet.open()
+    elif current_room.name == "Waterstorage" and command == "CANS":
+         current_room.room_items += Waterstorage.cans.open()
+>>>>>>> 50a76a9467b7506a5369ec7026a725f742831a77
 
     # ********************************* MOVE *********************************
     else:
