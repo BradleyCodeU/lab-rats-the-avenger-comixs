@@ -50,9 +50,11 @@ library.create_room_item("rat")
 library.create_room_item("fork")
 # Water storage
 #
-Waterstorage = Room("Water storage","A dark and dirty room with Spiders all around. There are dirty cans, and jumper cables. Theres a CABINET and has important stuff on it ")
-Waterstorage.cabinet = Container("You Look at the cabinet. Theres a Phone and 1 Ammo",["Phone","1 Ammo"])
-
+Waterstorage = Room("Water storage","A dark and dirty room with Spiders all around. There are dirty CANS, and jumper cables. Theres a CABINET and has important stuff on it ")
+Waterstorage.cabinet = Container("You Look at the cabinet. There's a ",["1 AMMO","Warter Bottle"])
+Waterstorage.cans = Container("In the Can",["Phone","Energy drink"])
+Waterstorage.create_room_item("cans")
+Waterstorage.create_room_item("spork")
 
 # Supply Closet
 #
@@ -173,6 +175,10 @@ def checkUserInput(current_room,command,heldItems):
         current_room.room_items += library.desk.open()
     elif current_room.name == "Library" and command == "SHELF":
          current_room.room_items += library.shelf.open()
+    elif current_room.name == "Waterstorage" and command == "CABINET":
+         current_room.room_items += Waterstorage.cabinet.open()
+    elif current_room.name == "Waterstorage" and command == "CANS":
+         current_room.room_items += Waterstorage.cans.open()
 
     # ********************************* MOVE *********************************
     else:
