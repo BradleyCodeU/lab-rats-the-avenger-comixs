@@ -1,4 +1,4 @@
-class phone():
+class Phone():
     def __init__(self,color,batteries,deadBattery):
         self.color = color 
         self.phonebattery = batteries 
