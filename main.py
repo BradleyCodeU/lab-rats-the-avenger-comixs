@@ -25,6 +25,11 @@ kitchen.cabinet = Container("cabinet under the sink",["knife","twinkie"])
 kitchen.create_room_item("spoon")
 kitchen.create_room_item("rat")
 
+#Bathroom
+bathroom=Room("Bathroom","An old bathroom that had been trashed a long time ago and it looks like nobody had been in there for a long time. There is a shelf and a cabinet next to the shelf.")
+bathroom.shelf = Container("shelf",["rat","empty bag of food"])
+bathroom.cabinet = Container("cabinet",["Dead Spider","1 ammo"])
+
 # Small Office
 #
 smalloffice = Room("Small Office","A dark room with a mess of books and papers covering the desk. There is some mail and an ozon.ru PACKAGE. You can READ a book. You can look in the DESK.")
@@ -64,7 +69,7 @@ locked = Room("locked","")
 # Connect rooms. These are one-way connections.
 kitchen.link_room(library, "EAST")
 kitchen.link_room(smalloffice, "SOUTH")
-kitchen.link_room(locked, "WEST")
+kitchen.link_room(bathroom, "WEST")
 supplycloset.link_room(smalloffice, "EAST")
 smalloffice.link_room(kitchen, "NORTH")
 smalloffice.link_room(lab, "EAST")
@@ -100,6 +105,8 @@ def playerItems():
         redFlashlight.get_interface(heldItems,current_room)
     if "yellow flashlight" in heldItems:
         yellowFlashlight.get_interface(heldItems,current_room)
+    if "1 ammo" in heldItems:
+        1-ammo.get_interface(heldItems,current_room)
 
 # This fuction checks the player's command and then runs the corresponding method
 def checkUserInput(current_room,command,heldItems):
@@ -167,6 +174,13 @@ def checkUserInput(current_room,command,heldItems):
         current_room.room_items += library.desk.open()
     elif current_room.name == "Library" and command == "SHELF":
          current_room.room_items += library.shelf.open()
+    elif current_room.name == "bathroom" and command == "SHELF":
+        # Open kitchen.cupboard and concat each of the contents to the end of room_items
+        current_room.room_items += bathroom.shelf.open()
+    elif current_room.name == "bathroom" and command == "CABINET":
+        # Open kitchen.cupboard and concat each of the contents to the end of room_items
+        current_room.room_items += bathroom.cabinet.open()
+
 
     # ********************************* MOVE *********************************
     else:
