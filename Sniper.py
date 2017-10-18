@@ -1,4 +1,4 @@
-class sniper():
+class Sniper():
     def __init__(self,color,maxAmmo,currentAmmo):
         self.colour= color #red,orange, ect
         self.maxAmmo= maxAmmo

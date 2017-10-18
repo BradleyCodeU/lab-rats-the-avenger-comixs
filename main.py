@@ -45,7 +45,7 @@ yellowFlashlight = Flashlight("yellow",1,True)
 #
 library=Room("Library","It's a mysterious place very dark and very quiet. You see a DESK as well as a SHELF.")
 library.desk=Container("inside the desk.",["phone battery","quarter"])
-library.shelf=Container("on the shelf.",["Sniper","can of twinkies"])
+library.shelf=Container("on the shelf.",["Sniper","can of soup"])
 library.create_room_item("rat")
 library.create_room_item("fork")
 # Water storage
@@ -66,6 +66,10 @@ locked = Room("locked","")
 kitchen.link_room(library, "EAST")
 kitchen.link_room(smalloffice, "SOUTH")
 kitchen.link_room(locked, "WEST")
+library.link_room(kitchen, "WEST")
+library.link_room(locked, "EAST")
+library.link_room(locked, "NORTH")
+library.link_room(locked, "SOUTH")
 supplycloset.link_room(smalloffice, "EAST")
 smalloffice.link_room(kitchen, "NORTH")
 smalloffice.link_room(lab, "EAST")
@@ -101,6 +105,7 @@ def playerItems():
         redFlashlight.get_interface(heldItems,current_room)
     if "yellow flashlight" in heldItems:
         yellowFlashlight.get_interface(heldItems,current_room)
+  
 
 # This fuction checks the player's command and then runs the corresponding method
 def checkUserInput(current_room,command,heldItems):
