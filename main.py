@@ -45,14 +45,14 @@ yellowFlashlight = Flashlight("yellow",1,True)
 #
 library=Room("Library","It's a mysterious place very dark and very quiet. You see a DESK as well as a SHELF.")
 library.desk=Container("inside the desk.",["phone battery","quarter"])
-library.shelf=Container("on the shelf.",["Sniper","can of soup"])
+library.shelf=Container("on the shelf.",["sniper","can of soup"])
 library.create_room_item("rat")
 library.create_room_item("fork")
 # Water storage
 #
 Waterstorage = Room("Water storage","A dark and dirty room with Spiders all around. There are dirty CANS, and jumper cables. Theres a CABINET and has important stuff on it ")
 Waterstorage.cabinet = Container("You Look at the cabinet. There's a ",["1 AMMO","Warter Bottle"])
-Waterstorage.cans = Container("In the Can",["Phone","Energy drink"])
+Waterstorage.cans = Container("In the Can",["phone","energy drink"])
 Waterstorage.create_room_item("cans")
 Waterstorage.create_room_item("spork")
 
