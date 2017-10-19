@@ -11,7 +11,7 @@ class Phone():
         elif self.On and self.deadBatter:
             print("The Phone is switched on but its not working. You can TURN Phone OFF")
         else:
-            print("The flashlight is switched off. You can TURN Phone ON")
+            print("The Phone is switched off. You can TURN Phone ON")
         if self.phonebattery == 0 and "battery" in heldItems:
             print("You can ADD BATTERY TO Phone")
         if self.phonebattery > 0:

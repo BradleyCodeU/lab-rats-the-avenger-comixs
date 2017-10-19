@@ -30,7 +30,7 @@ kitchen.create_room_item("rat")
 #Bathroom
 bathroom=Room("Bathroom","An old bathroom that had been trashed a long time ago and it looks like nobody had been in there for a long time. There is a shelf and a cabinet next to the shelf.")
 bathroom.shelf = Container("shelf",["rat","empty bag of food"])
-bathroom.cabinet = Container("cabinet",["Dead Spider","1 ammo"])
+bathroom.cabinet = Container("cabinet",["dead Spider","1 ammo"])
 
 # Small Office
 #
@@ -57,7 +57,7 @@ library.create_room_item("fork")
 # Water storage
 #
 waterstorage = Room("Water storage","A dark and dirty room with Spiders all around. There are dirty CANS, and jumper cables. Theres a CABINET and has important stuff on it ")
-waterstorage.cabinet = Container("cabinet",["1 AMMO","warter bottle"])
+waterstorage.cabinet = Container("cabinet",["1 ammo","warter bottle"])
 waterstorage.cans = Container("In the Can",["phone","energy drink"])
 waterstorage.create_room_item("can of spinach")
 waterstorage.create_room_item("spork")
@@ -195,7 +195,7 @@ def checkUserInput(current_room,command,heldItems):
         # Open kitchen.cupboard and concat each of the contents to the end of room_items
         current_room.room_items += bathroom.shelf.open()
     elif current_room.name == "bathroom" and command == "CABINET":
-        # Open kitchen.cupboard and concat each of the contents to the end of room_items
+       
         current_room.room_items += bathroom.cabinet.open()
 
     # ********************************* MOVE *********************************
