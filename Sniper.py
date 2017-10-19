@@ -3,7 +3,7 @@ class Sniper():
         self.colour= color #red,orange, ect
         self.maxAmmo= maxAmmo
         self.currentAmmo= currentAmmo
-        self.isOn=False
+        self.isOn=True
 
 
     def remove_ammo(self,heldItems,current_room):
