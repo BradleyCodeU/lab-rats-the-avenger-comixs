@@ -32,6 +32,12 @@ bathroom=Room("Bathroom","An old bathroom that had been trashed a long time ago 
 bathroom.shelf = Container("shelf",["rat","empty bag of food"])
 bathroom.cabinet = Container("cabinet",["dead Spider","1 ammo"])
 
+bathroom=Room("Bathroom","An old bathroom that had been trashed a long time ago and it looks like nobody had been in there for a long time. There is a shelf and a small cabinet next to the shelf.")
+bathroom.shelf=("shelf",["rat","empty bag","knife"])
+bathroom.cabinet=("cabinet",["Dead Spider","hammer","1 ammo"])
+bathroom.create_room_item("knife")
+bathroom.create_room_item("hammer")
+bathroom.create_room_item("1 ammo")
 # Small Office
 #
 smalloffice = Room("Small Office","A dark room with a mess of books and papers covering the desk. There is some mail and an ozon.ru PACKAGE. You can READ a book. You can look in the DESK.")
@@ -74,8 +80,8 @@ locked = Room("locked","")
 # Connect rooms. These are one-way connections.
 kitchen.link_room(library, "EAST")
 kitchen.link_room(smalloffice, "SOUTH")
-kitchen.link_room(bathroom, "WEST") # Need to add a link from bathroom back to kitchen
-
+kitchen.link_room(bathroom, "WEST") 
+bathroom.link_room(kitchen, "EAST")
 library.link_room(kitchen, "WEST")
 library.link_room(locked, "EAST")
 library.link_room(locked, "NORTH")
@@ -117,6 +123,10 @@ def playerItems():
         redFlashlight.get_interface(heldItems,current_room)
     if "yellow flashlight" in heldItems:
         yellowFlashlight.get_interface(heldItems,current_room)
+    if "Knife" in heldItems:
+        knife.get_interface(heldItems,current_room)
+    if "Hammer" in heldItems:
+        hammer.get_interface(heldItems,current_room)
     if "1 ammo" in heldItems:
         1-ammo.get_interface(heldItems,current_room) # 1-ammo needs to be instanciated in the bathroom set up section above
 
@@ -196,6 +206,12 @@ def checkUserInput(current_room,command,heldItems):
         current_room.room_items += bathroom.shelf.open()
     elif current_room.name == "bathroom" and command == "CABINET":
        
+        current_room.room_items += bathroom.cabinet.open()
+    elif current_room.name == "Bathroom" and command == "SHELF":
+        # Open lab.shelf and concat each of the contents to the end of room_items
+        current_room.room_items += bathroom.shelf.open()
+    elif current_room.name == "Bathroom" and command == "CABINET":
+        # Open lab.shelf and concat each of the contents to the end of room_items
         current_room.room_items += bathroom.cabinet.open()
 
     # ********************************* MOVE *********************************
