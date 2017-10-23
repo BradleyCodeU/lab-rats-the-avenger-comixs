@@ -30,14 +30,15 @@ kitchen.create_room_item("rat")
 #Bathroom
 bathroom=Room("Bathroom","An old bathroom that had been trashed a long time ago and it looks like nobody had been in there for a long time. There is a shelf and a cabinet next to the shelf.")
 bathroom.shelf = Container("shelf",["rat","empty bag of food"])
-bathroom.cabinet = Container("cabinet",["dead Spider","1 ammo"])
+bathroom.cabinet = Container("cabinet",["dead Spider","ammo"])
 
 bathroom=Room("Bathroom","An old bathroom that had been trashed a long time ago and it looks like nobody had been in there for a long time. There is a shelf and a small cabinet next to the shelf.")
 bathroom.shelf=("shelf",["rat","empty bag","knife"])
-bathroom.cabinet=("cabinet",["Dead Spider","hammer","1 ammo"])
+bathroom.cabinet=("cabinet",["Dead Spider","hammer","ammo"])
 bathroom.create_room_item("knife")
 bathroom.create_room_item("hammer")
-bathroom.create_room_item("1 ammo")
+bathroom.create_room_item("ammo")
+
 # Small Office
 #
 smalloffice = Room("Small Office","A dark room with a mess of books and papers covering the desk. There is some mail and an ozon.ru PACKAGE. You can READ a book. You can look in the DESK.")
@@ -60,10 +61,11 @@ library.desk=Container("inside the desk.",["phone battery","quarter"])
 library.shelf=Container("on the shelf.",["sniper","can of soup"])
 library.create_room_item("rat")
 library.create_room_item("fork")
+redSniper= Sniper("Red",3,0)
 # Water storage
 #
 waterstorage = Room("Water storage","A dark and dirty room with Spiders all around. There are dirty CANS, and jumper cables. Theres a CABINET and has important stuff on it ")
-waterstorage.cabinet = Container("cabinet",["1 ammo","warter bottle"])
+waterstorage.cabinet = Container("cabinet",["ammo","warter bottle"])
 waterstorage.cans = Container("In the Can",["phone","energy drink"])
 waterstorage.create_room_item("can of spinach")
 waterstorage.create_room_item("spork")
@@ -100,7 +102,7 @@ current_room = kitchen
 # Set up characters
 dmitry = Enemy("Dmitry", "A smelly zombie")
 dmitry.set_speech("Brrlgrh... rgrhl... brains...")
-dmitry.set_weaknesses(["FORK","SPORK","KNIFE"])
+dmitry.set_weaknesses(["FORK","SPORK","KNIFE","SNIPER"])
 supplycloset.set_character(dmitry)
 
 # This is a procedure that simply prints the items the player is holding and tells them if they can do something with that item
@@ -127,8 +129,8 @@ def playerItems():
         knife.get_interface(heldItems,current_room)
     if "Hammer" in heldItems:
         hammer.get_interface(heldItems,current_room)
-    if "1 ammo" in heldItems:
-        1-ammo.get_interface(heldItems,current_room) # 1-ammo needs to be instanciated in the bathroom set up section above
+    if "ammo" in heldItems and "sniper" in heldItems:
+        redSniper.add_ammo(heldItems) # 1-ammo needs to be instanciated in the bathroom set up section above
 
 
 # This fuction checks the player's command and then runs the corresponding method

@@ -16,15 +16,17 @@ class Sniper():
 
 
     def add_ammo(self,heldItems):
-        if self.currentAmmo < 3 and "1 ammo" in heldItems:
-            self.currentAmmo +=1
+        if self.currentAmmo < 3 and "ammo" in heldItems:
             print("You put 1 ammo in the "+self.colour+" sniper rifle.")
-            heldItems.remove("1 ammo")
-            self.maxAmmo=currentAmmo+1
+            heldItems.remove("ammo")
+            self.currentAmmo +=1
+            self.maxAmmo=self.currentAmmo+1
         elif self.currentAmmo > 3:
             print("The "+self.colour+" sniper rifle already has enough ammo")
-        elif not "1 ammo" in heldItems:
-            print("You aren't holding 1 ammo")
+        elif not "ammo" in heldItems:
+            print("You aren't holding ammo")
+
+    
 
 
 
@@ -40,7 +42,7 @@ class Sniper():
 
         def get_interface(self,heldItems,current_room):
             
-            if self.currentAmmo == 0 and "1 ammo" in heldItems:
+            if self.currentAmmo == 0 and "ammo" in heldItems:
                 print("You can ADD 1 AMMO TO "+self.colour.upper()+" SNIPER")
             if self.batteries > 0:
                 print("You can REMOVE "+self.colour.upper()+" SNIPER's AMMO")
