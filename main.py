@@ -207,7 +207,6 @@ def checkUserInput(current_room,command,heldItems):
         # Open kitchen.cupboard and concat each of the contents to the end of room_items
         current_room.room_items += bathroom.shelf.open()
     elif current_room.name == "bathroom" and command == "CABINET":
-       
         current_room.room_items += bathroom.cabinet.open()
     elif current_room.name == "Bathroom" and command == "SHELF":
         # Open lab.shelf and concat each of the contents to the end of room_items
